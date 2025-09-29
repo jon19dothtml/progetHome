@@ -1,0 +1,7 @@
+xml
+<h1>DEVICES</h1>
+@for (device of devices; track device.id) {
+  <li (click)="handleClick(device.id, device.name, device.description)">
+    {{device.id}} - {{device.name }}
+  </li>
+}

@@ -1,0 +1,28 @@
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+export interface DeviceModel {
+  id: number;
+  name: string;
+  description: string;
+
+}
+@Component({
+  selector: 'app-devices',
+  imports: [],
+  templateUrl: './devices.html',
+  styleUrl: './devices.scss',
+})
+export class Devices {
+  private router = inject(Router);
+
+  devices: DeviceModel[] = [
+    { id: 1, name: 'Device 1', description: 'asd'},
+    { id: 2, name: 'Device 2', description:'qwe'},
+    { id: 3, name: 'Device 3', description:'123'},
+  ];
+
+  handleClick(id: number, name: string, description: string) {
+    this.router.navigate(['/device', id] , { queryParams: { name, description }, });
+  }
+}

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class Device {
+export class DeviceService {
   private http = inject(HttpClient);
   objList: any[] = []
 

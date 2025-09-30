@@ -1,1 +1,1 @@
-<span class="count">{{cService.count}}</span>
+<span class="count" [ngClass]="{'dark': cService.count < 0, 'zero' : cService.count === 0}">{{cService.count}}</span>

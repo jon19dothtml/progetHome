@@ -4,26 +4,37 @@ import { Devices } from './devices/devices';
 import { ErrorPage } from './error-page/error-page';
 import { Login } from './login/login';
 import { Device } from './device/device';
+import path from 'path';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: Home
-    },
-    {
-        path: 'login',
-        component: Login
-    },
-    {
-        path:'devices',
-        component: Devices
-    },
-    {
-        path: 'device/:id',
-        component: Device
-    },
-    {
-        path: '**',
-        component: ErrorPage
-    }
+  {
+    path: '',
+    component: Home,
+  },
+  {
+    path: 'login',
+    component: Login,
+  },
+  {
+    path: 'devices',
+    component: Devices,
+    children: [
+      {
+        path: ':id',
+        component: Device,
+      },
+    ],
+    canActivate: [
+      authGuard      
+    ],
+  },
+  {
+    path: 'device/:id',
+    component: Device,
+  },
+  {
+    path: '**',
+    component: ErrorPage,
+  },
 ];

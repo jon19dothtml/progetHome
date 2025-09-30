@@ -7,17 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class DeviceService {
   private http = inject(HttpClient);
-  objList: any[] = []
 
-  getDevices (){
-    this.http.get<any[]>('https://api.restful-api.dev/objects').subscribe(obj =>{
-      this.objList = obj
-    });
-  } 
+  getDevices (): Observable<{id: string, name: string}[]>
+  {
+    return this.http.get<{id: string, name: string}[]>('https://api.restful-api.dev/objects');
+  }
 
-  postDevices (payload: unknown){
-   this.http.post<unknown>('https://api.restful-api.dev/objects', payload).subscribe(config => {
-    console.log('Update config:', config)
-   });
+  postDevices (payload: object){
+   return this.http.post<{id: string, name: string}>('https://api.restful-api.dev/objects', payload)
   }
 }

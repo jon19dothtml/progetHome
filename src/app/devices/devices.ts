@@ -1,34 +1,32 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceService } from '../services/deviceService';
+import { Observable } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 export interface DeviceModel {
-  id: number;
+  id: string;
   name: string;
   description: string;
 
 }
 @Component({
   selector: 'app-devices',
-  imports: [],
+  imports: [AsyncPipe, CommonModule],
   templateUrl: './devices.html',
   styleUrl: './devices.scss',
 })
 export class Devices {
   private router = inject(Router);
-  private decicesService = inject(DeviceService)
-
-  devices: DeviceModel[] = this.decicesService.objList/* [
-    { id: 1, name: 'Device 1', description: 'asd'},
-    { id: 2, name: 'Device 2', description:'qwe'},
-    { id: 3, name: 'Device 3', description:'123'},
-  ];
- */
+  private route = inject(ActivatedRoute)
+  private devicesService = inject(DeviceService)
+  devices$: Observable<{id: string, name: string}[]> = this.devicesService.getDevices()
   constructor () {
-    this.decicesService.getDevices()
+    this.devicesService = this.route.snapshot.data['device']
+   // this.devicesService.postDevices({id: '20', name: 'devices 20'})
   }
 
-  handleClick(id: number, name: string, description: string) {
+  handleClick(id: string, name: string, description: string) {
     this.router.navigate(['/device', id] , { queryParams: { name, description }, });
   }
 }

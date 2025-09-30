@@ -1,7 +1,13 @@
-xml
 <h1>DEVICES</h1>
-@for (device of devices; track device.id) {
-  <li (click)="handleClick(device.id, device.name, device.description)">
-    {{device.id}} - {{device.name }}
-  </li>
-}
+<div *ngIf="devices$ | async as dispositivi">
+  <div *ngFor="let item of dispositivi">
+    <span>{{ item.id }} - {{ item.name }}</span>
+  </div>
+</div>
+<!-- 
+@if(devices$ | async: as dispositivi){
+  {{dispositivi |json}}
+  @for(item of dispositivi; track item){
+    {{item.id}} - {{item.name}}
+  }
+} -->

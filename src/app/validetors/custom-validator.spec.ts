@@ -1,4 +1,5 @@
-import { CustomValidator } from './custom-validator';
+import { CustomValidator } from "./custom-validator";
+
 
 describe('CustomValidator', () => {
   it('should create an instance', () => {

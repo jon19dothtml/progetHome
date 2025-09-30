@@ -4,13 +4,17 @@ import { Devices } from './devices/devices';
 import { ErrorPage } from './error-page/error-page';
 import { Login } from './login/login';
 import { Device } from './device/device';
-import path from 'path';
 import { authGuard } from './guards/auth-guard';
+import { Registration } from './registration/registration';
 
 export const routes: Routes = [
   {
     path: '',
     component: Home,
+  },
+  {
+    path: 'registration',
+    component: Registration,
   },
   {
     path: 'login',

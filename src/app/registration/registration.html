@@ -1,0 +1,47 @@
+<form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)" appPasswordValidator>
+  <div>
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="Name" ngModel required #name="ngModel" />
+    <div *ngIf="name.invalid && name.touched">
+      <small *ngIf="name.errors?.['required']">Mandatory Name.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="surname">Surname: </label>
+    <input type="text" name="surname" id="surname" ngModel required #surname="ngModel" />
+    <div *ngIf="surname.invalid && surname.touched">
+      <small *ngIf="surname.errors?.['required']">Mandatory Surname.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="fiscalCode">Fiscal code: </label>
+    <input type="text" name="fiscalCode" id="fiscalCode" ngModel required #fiscalCode="ngModel" />
+    <div *ngIf="fiscalCode.invalid && fiscalCode.touched">
+      <small *ngIf="fiscalCode.errors?.['required']">Mandatory Fiscal code.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password" ngModel appCustomValidator required #password="ngModel" />
+    <div *ngIf="password.invalid && password.touched">
+      <small *ngIf="password.errors?.['required']">Mandatory Password.</small>
+      <small *ngIf="password.errors?.['minlength']">Minimum 6 characters </small>
+    </div>
+  </div>
+
+  <div>
+    <label for="confirm">Confirm Password: </label>
+    <input type="password" id="confirm" name="confirm" ngModel required #confirm="ngModel" />
+    <div *ngIf="confirm.invalid && confirm.touched">
+      <small *ngIf="confirm.errors?.['required']">Mandatory Confirm Password.</small>
+    </div>
+  </div>
+@if(registrationForm.form.errors?.['passwordMismatch']) {
+  <div>passwords do not match</div>
+}
+  <input type="checkbox" id="confirmBTN" name="confirmBTN" ngModel required #confirmBTN="ngModel" />
+  <button type="submit" value="Submit" [disabled]="registrationForm.invalid">Submit</button>
+</form>

@@ -1,4 +1,11 @@
 .count {
   font-size: 20rem;
   color:rgba(240, 177, 255, 1);
+
+  &.dark {
+    color:	rgba(182, 255, 177, 1);
+  }
+  &.zero{
+    color: rgba(0, 0, 0, 1)
+  }
 }

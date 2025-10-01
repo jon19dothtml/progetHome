@@ -5,3 +5,11 @@ xml
     {{device.id}} - {{device.name }}
   </li>
 }
+<!-- {{dispositivi$ | async}} -->
+
+@if (dispositivi$ | async; as dispositivi) {
+  <!-- {{ dispositivi | json }} -->
+  @for(item of dispositivi; track item){
+    {{item.id}} - {{item.name}}<br>
+  }
+}

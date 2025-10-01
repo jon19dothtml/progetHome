@@ -1,0 +1,43 @@
+<p>form-sub works!</p>
+
+
+<form [formGroup]="group"(ngSubmit)="logger()">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" />
+        <label for="fiscalCode">Fiscal Code:</label>
+        <input type="text" id="fiscalCode" name="fsCode"/>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        
+
+    
+
+        <!-- <div *ngIf="password.invalid && password.touched">
+            <small *ngIf="password.errors?.['required']">Password Obbligatoria</small>
+            <small *ngIf="password.errors?.['minlength']">Minimo 6 caratteri</small>
+            <small *ngIf="password.errors?.['customFormat']">Deve finire con 789</small>
+        </div> -->
+
+        <label for="confPSW">Confirm Password:</label>
+        <input type="password" id="confPassword" name="confPassword"  />
+
+        <!-- <div *ngIf="password.invalid && password.touched">
+            <small *ngIf="confPassword.errors?.['required']">Password Obbligatoria</small>
+            <small *ngIf="confPassword.errors?.['minlength']">Minimo 6 caratteri</small>
+            <p *ngIf="confPassword.errors?.['passwordFormat']">Le due password devono essere uguali</p>
+        </div> -->
+
+        @if(group.errors?.['passwordMismatch']){
+            <div style="border: 2px solid red ">Le due password devono essere uguali</div>
+        }
+
+        <label for="confirmBTN">I accept the privacy info</label>
+        <input type="checkbox" id="confirmBTN" name="confPrivacy"/>
+        <button type="submit" value="Submit" [disabled]="group.invalid">Submit</button>
+    </div>
+
+
+</form>

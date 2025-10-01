@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-device',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './device.html',
   styleUrl: './device.scss'
 })
